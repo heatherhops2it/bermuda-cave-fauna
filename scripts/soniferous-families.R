@@ -23,3 +23,13 @@ for (i in files) {
 
 
 bda_spp <- read_csv(file = "bermuda-species.csv")
+
+
+
+# exploration --------------------------------------------------------------
+
+unique(df_son$Phylum)
+unique(bda_spp$Phylum)
+
+## So the soniferous dataset only contains vertebrate species. Annoying!
+
