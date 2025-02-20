@@ -21,6 +21,9 @@ for (i in files) {
    bind_rows(df_null)
 }
 
+son_spp <- read_csv(file = "soniferous-species-list.csv") |> 
+  separate(Taxon, c("Genus", "Species", "Subspecies"), " ") |> 
+  select(Genus, Species, "Soniferous Category")
 
 bda_spp <- read_csv(file = "bermuda-species.csv")
 
@@ -31,5 +34,11 @@ bda_spp <- read_csv(file = "bermuda-species.csv")
 unique(df_son$Phylum)
 unique(bda_spp$Phylum)
 
-## So the soniferous dataset only contains vertebrate species. Annoying!
+## So the soniferous families dataset only contains vertebrate species. Annoying!
+
+## How many lines from son_spp are on df_son? I can remove them?
+
+son_info <- df_son |> 
+  select(Phylum, Class, Order, Family, Genus, Species) 
+
 
