@@ -21,6 +21,7 @@ for (i in files) {
    bind_rows(df_null)
 }
 
+## load in the list of all soniferous species
 son_spp <- read_csv(file = "soniferous-species-list.csv") |> 
   separate(Taxon, c("Genus", "Species", "Subspecies"), " ") |> 
   select(Genus, Species, "Soniferous Category")
@@ -34,11 +35,19 @@ bda_spp <- read_csv(file = "bermuda-species.csv")
 unique(df_son$Phylum)
 unique(bda_spp$Phylum)
 
-## So the soniferous families dataset only contains vertebrate species. Annoying!
 
-## How many lines from son_spp are on df_son? I can remove them?
+## So the soniferous families dataset only contains vertebrate species. Annoying!
 
 son_info <- df_son |> 
   select(Phylum, Class, Order, Family, Genus, Species) 
+
+## How many lines from son_spp are on df_son? I can remove them?
+uk_son_spp <- son_spp |> 
+  anti_join(df_son, by = "Genus")
+
+## the uk_son_spp is the species that are labelled as soniferous but are not in the 'Species from WORMS' folder
+
+
+
 
 
